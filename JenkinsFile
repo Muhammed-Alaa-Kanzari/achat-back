@@ -12,7 +12,7 @@ pipeline {
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
-         stage('cleanig the project') {
+         stage('cleaning the project') {
             steps{
                 sh 'mvn clean'
             }
