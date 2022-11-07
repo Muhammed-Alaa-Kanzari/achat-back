@@ -94,7 +94,7 @@ public class FactureServiceImpl implements IFactureService {
 		}else {
 			return (List<Facture>) fournisseur.getFactures();
 		}
-		return null;
+		return getFacturesByFournisseur(idFournisseur);
 	}
 
 	@Override

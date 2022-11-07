@@ -1,6 +1,9 @@
 package tn.esprit.rh.achat.services;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.rh.achat.entities.DetailFournisseur;
@@ -18,6 +21,8 @@ import java.util.List;
 @Slf4j
 public class FournisseurServiceImpl implements IFournisseurService {
 
+	private Logger logger = LoggerFactory.getLogger(getClass()); 
+	
 	@Autowired
 	FournisseurRepository fournisseurRepository;
 	@Autowired
@@ -29,7 +34,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
-		List<Fournisseur> fournisseurs = (List<Fournisseur>) fournisseurRepository.findAll();
+		List<Fournisseur> fournisseurs = fournisseurRepository.findAll();
 		for (Fournisseur fournisseur : fournisseurs) {
 			log.info(" fournisseur : " + fournisseur);
 		}
@@ -68,20 +73,23 @@ public class FournisseurServiceImpl implements IFournisseurService {
 	@Override
 	public Fournisseur retrieveFournisseur(Long fournisseurId) {
 
-		Fournisseur fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);
-		return fournisseur;
+		return fournisseurRepository.findById(fournisseurId).orElse(null);
 	}
 
 	@Override
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
 		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
+		
+		if (fournisseur ==null ) {
+			logger.error("not found");
+		}else {
         fournisseur.getSecteurActivites().add(secteurActivite);
         fournisseurRepository.save(fournisseur);
 		
+		}
 		
 	}
-
 	
 
 }
