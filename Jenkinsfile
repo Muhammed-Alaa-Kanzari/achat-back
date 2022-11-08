@@ -33,6 +33,18 @@ pipeline {
                 sh 'mvn  package'
             }
         }
+           stage ('Unit Test') {
+            steps{
+                sh 'mvn  test'
+            }
+        }
+            stage ('SonarQube analysis') {
+            steps{
+                sh '''
+                mvn sonar:sonar
+                '''
+            }
+        }
     }
     
      
