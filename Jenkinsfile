@@ -74,7 +74,11 @@ pipeline {
                 }
             }
         }
-
+/*stage('deploy nexus'){
+                
+                steps{
+         sh "mvn deploy"
+                }}*/
     }
 
     
