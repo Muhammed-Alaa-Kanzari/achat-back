@@ -103,10 +103,16 @@ pipeline {
                 sh 'sudo docker build --build-arg IP=0.0.0.0 -t medalaakanzari/achat_back .'
             }
         }
+        
+        
         stage ('Deploy our image'){
             steps{
-                sh 'sudo docker login -u medalaakanzari -p medalaa99';
-                sh 'sudo docker push medalaakanzari/achat_back'
+            
+            
+                sh 'sudo docker login -u samiriahi -p 123456799';
+                
+                sh 'sudo docker push samiriahi/achat_back'
+                
                 }
             }
     }
