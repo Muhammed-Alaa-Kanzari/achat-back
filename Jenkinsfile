@@ -5,62 +5,55 @@ pipeline {
         maven 'M2_HOME'
         jdk 'JAVA_HOME'
     }
-    
-    
-     environment {
+    environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.1.17:8081"
+        NEXUS_URL = "0.0.0.0:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+      
     }
-    
+
      stages {
-        stage('Git Checkout') {
+        stage('Getting project from Github') {
             steps {
-                git branch : 'operateur' ,
+                git branch : 'fournisseur' ,
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
-        
-         stage('Cleaning the project') {
+         stage('Database Connection') {
+            steps{
+                sh '''
+                sudo docker stop mysql || true
+                sudo docker restart mysql || true
+                '''
+            }
+        }
+        stage('Cleaning the project') {
             steps{
                 sh 'mvn clean'
             }
+
         }
-        
-        stage (	'Unit testing ' ) {
-			   steps{
-				 sh 'mvn test'  		 
-				}
-			}	
-			
-			
-        stage ('Maven Build'){	
-		  	steps{
-		  		  sh 'mvn clean install '
-		  	 }
-		 }
-		 
-		  stage ('Artifact construction') {
+        stage ('Artifact construction') {
             steps{
                 sh 'mvn  package'
             }
         }
-		 
-		 stage ('SonarQube analysis'){	
-		  	steps{
-		  		script{
-		  				withSonarQubeEnv(credentialsId: 'sonarToken', installationName: 'sonarServer') {		  			
-		  		       	sh 'mvn clean package sonar:sonar '
-		            		}
-		              }		
-		  	      }	
-		   }
-		   
-		   	
-		   
-		   stage("Publish to Nexus Repository Manager") {
+        stage ('Unit Test') {
+            steps{
+                sh 'mvn  test'
+            }
+        }
+        stage ('SonarQube analysis') {
+            steps{
+                sh '''
+                mvn sonar:sonar
+                '''
+            }
+        }
+
+        stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -95,10 +88,7 @@ pipeline {
                 }
             }
         }
-		   
-		  
-		  
-		    stage ('Build our image'){
+         stage ('Build our image'){
             steps{
                 sh 'sudo docker build --build-arg IP=0.0.0.0 -t medalaakanzari/achat_back .'
             }
@@ -116,13 +106,6 @@ pipeline {
                 }
             }
     }
-		  
-		   	
-		   
-		   	
-    }
-         
+    
+     
 }
-
-
-
