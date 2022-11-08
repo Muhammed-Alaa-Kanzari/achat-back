@@ -5,12 +5,13 @@ pipeline {
         maven 'M2_HOME'
         jdk 'JAVA_HOME'
     }
-     environment {
+    environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.200.75:8081"
+        NEXUS_URL = "0.0.0.0:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+      
     }
     
     stages {
