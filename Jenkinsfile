@@ -37,7 +37,11 @@ stage ('Build our image'){
                 }
             }
 
-    
+    stage ('artifact construction') {
+            steps{
+                sh 'mvn  package'
+            }
+        }
 
     }
 
