@@ -28,6 +28,11 @@ pipeline {
 		  		  sh 'mvn clean install '
 		  	 }
 		  }	
+            stage ('artifact construction') {
+            steps{
+                sh 'mvn  package'
+            }
+        }
     }
     
      
