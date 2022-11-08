@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
+        maven 'M2_HOME'
+        jdk 'JAVA_HOME'
     }
     environment {
         NEXUS_VERSION = "nexus3"
@@ -10,19 +11,17 @@ pipeline {
         NEXUS_URL = "0.0.0.0:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
-        registry = "medalaakanzari/achat-back"
-        registryCredential = 'ahmedazizelj'
-        dockerImage = ''
+      
     }
 
-    stages {
+     stages {
         stage('Getting project from Github') {
             steps {
-                git branch : 'main' ,
+                git branch : 'fournisseur' ,
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
-        stage('database connection') {
+         stage('Database Connection') {
             steps{
                 sh '''
                 sudo docker stop mysql || true
@@ -30,13 +29,13 @@ pipeline {
                 '''
             }
         }
-        stage('cleanig the project') {
+        stage('Cleaning the project') {
             steps{
                 sh 'mvn clean'
             }
 
         }
-        stage ('artifact construction') {
+        stage ('Artifact construction') {
             steps{
                 sh 'mvn  package'
             }
@@ -53,6 +52,7 @@ pipeline {
                 '''
             }
         }
+
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -88,17 +88,18 @@ pipeline {
                 }
             }
         }
-        stage ('Build our image'){
+         stage ('Build our image'){
             steps{
-                sh 'sudo docker build --build-arg IP=0.0.0.0 -t medalaakanzari/achat-back .'
+                sh 'sudo docker build --build-arg IP=0.0.0.0 -t medalaakanzari/achat_back .'
             }
         }
         stage ('Deploy our image'){
             steps{
-                sh 'sudo docker login -u medalaakanzari -p 91523291aA';
-                sh 'sudo docker push medalaakanzari/achat-back'
+                sh 'sudo docker login -u medalaakanzari -p medalaa99';
+                sh 'sudo docker push medalaakanzari/achat_back'
                 }
             }
-
     }
+    
+     
 }
