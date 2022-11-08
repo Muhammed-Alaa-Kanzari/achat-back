@@ -77,25 +77,20 @@ pipeline {
         }
 
                 
-         /* stage ('Build our image'){
+         stage ('Build our image'){
             steps{
                 sh 'sudo docker build --build-arg IP=0.0.0.0 -t nourcheinecheikh/achat_back .'
             }
         }
-      /*  stage ('Deploy our image'){
+        stage ('Deploy our image'){
             steps{
                 sh 'sudo docker login -u nourcheinecheikh -p 123nourcheine';
                 sh 'sudo docker push nourcheinecheikh/achat_back'
                 }
-            }*/
-            stage('build images') {
-            steps {
-              
-               sh 'docker build -t nourcheinecheikh/devops:2.1 .'
             }
+           
         
     }
 
     
-}
 }
