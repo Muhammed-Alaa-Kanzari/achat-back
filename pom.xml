@@ -12,11 +12,10 @@
 	<artifactId>achat</artifactId>
 	<version>1.0</version>
 	<name>achat</name>
-	<description>Projet pour le module DevOps</description>
+	<description>Projet  DevOps</description>
 	<properties>
 		<java.version>1.8</java.version>
-		
-		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -54,6 +53,12 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -72,11 +77,22 @@
 				</configuration>
 			</plugin>
 			<plugin>
-    	<groupId>org.apache.maven.plugins</groupId>
-    	<artifactId>maven-resources-plugin</artifactId>
-    	<version>3.1.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
 			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://192.168.197.137:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>maven-nexus-repo</id>
+			<url>http://192.168.197.137:8081/repository/maven-maven-nexus-repo/</url>
+		</repository>
+	</distributionManagement>
 
 </project>
