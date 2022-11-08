@@ -2,8 +2,11 @@ package tn.esprit.rh.achat.entities;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,9 +31,4 @@ public class SecteurActivite implements Serializable{
 	@ManyToMany(mappedBy="secteurActivites")
 	@JsonIgnore
 	private Set<Fournisseur> fournisseurs;
-
-	public SecteurActivite(String codeSecteurActivite, String libelleSecteurActivite) {
-		this.codeSecteurActivite = codeSecteurActivite;
-		this.libelleSecteurActivite = libelleSecteurActivite;
-	}
 }

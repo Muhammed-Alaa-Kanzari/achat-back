@@ -7,7 +7,6 @@ import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
 
 import java.util.List;
 
-
 @Service
 public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
@@ -22,8 +21,8 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit addCategorieProduit(CategorieProduit cp) {
-		
-		return categorieProduitRepository.save(cp);
+		categorieProduitRepository.save(cp);
+		return cp;
 	}
 
 	@Override
@@ -40,8 +39,8 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit retrieveCategorieProduit(Long id) {
-		return  categorieProduitRepository.findById(id).orElseThrow(null);
-		
+		CategorieProduit categorieProduit = categorieProduitRepository.findById(id).orElse(null);
+		return categorieProduit;
 	}
 
 }

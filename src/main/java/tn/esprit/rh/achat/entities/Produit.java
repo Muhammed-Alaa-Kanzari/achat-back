@@ -24,7 +24,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Produit implements Serializable {
 
-	
 	/**
 	 * 
 	 */
@@ -51,15 +50,6 @@ public class Produit implements Serializable {
 	
 
 
-	public Produit(String codeProduit, String libelleProduit, float prix, Date dateCreation,
-			Date dateDerniereModification) {
-		super();
-		this.codeProduit = codeProduit;
-		this.libelleProduit = libelleProduit;
-		this.prix = prix;
-		this.dateCreation = dateCreation;
-		this.dateDerniereModification = dateDerniereModification;
 	
-	}
 
 }
