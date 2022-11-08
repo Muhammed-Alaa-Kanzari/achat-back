@@ -13,6 +13,12 @@ pipeline {
             }
         }
         
+         stage('Cleaning the project') {
+            steps{
+                sh 'mvn clean'
+            }
+        }
+        
         stage (	'Unit testing ' ) {
 			   steps{
 				 sh 'mvn test'  		 
@@ -20,12 +26,7 @@ pipeline {
 			}	
 			
 			
-         stage('Cleaning the project') {
-            steps{
-                sh 'mvn clean'
-            }
-
-        }
+        
         stage ('Integration testing'){	
 		  	steps{
 		  		  sh 'mvn verify -DskipUnitTests'
@@ -36,6 +37,12 @@ pipeline {
 		  		  sh 'mvn clean install '
 		  	 }
 		 }
+		 
+		  stage ('Artifact construction') {
+            steps{
+                sh 'mvn  package'
+            }
+        }
 		 
 		 stage ('SonarQube analysis'){	
 		  	steps{
