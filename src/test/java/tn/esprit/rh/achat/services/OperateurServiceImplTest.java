@@ -17,7 +17,7 @@ import tn.esprit.rh.achat.entities.Operateur;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest	
 @Slf4j
 public class OperateurServiceImplTest {
 	
