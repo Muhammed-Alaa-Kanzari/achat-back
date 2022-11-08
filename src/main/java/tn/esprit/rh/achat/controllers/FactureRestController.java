@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rh.achat.entities.Facture;
-import tn.esprit.rh.achat.dto.FactureDTO;
+import tn.esprit.rh.achat.dto.FactureDto;
 import tn.esprit.rh.achat.services.IFactureService;
 
 import java.util.Date;
@@ -39,7 +39,7 @@ public class FactureRestController {
 
     @PostMapping("/add-facture")
     @ResponseBody
-    public Facture addFacture(@RequestBody FactureDTO f)  {
+    public Facture addFacture(@RequestBody FactureDto f)  {
         Facture facture = new Facture();
         BeanUtils.copyProperties(f, facture);
         return factureService.addFacture(facture);
