@@ -84,7 +84,7 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
 			<url>http://192.168.197.137:8081/repository/maven-snapshots/</url>
@@ -93,6 +93,6 @@
 			<id>maven-nexus-repo</id>
 			<url>http://192.168.197.137:8081/repository/maven-maven-nexus-repo/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement> -->
 
 </project>
