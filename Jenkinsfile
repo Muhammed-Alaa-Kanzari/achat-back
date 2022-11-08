@@ -21,6 +21,7 @@ pipeline {
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
+        
          stage('Database Connection') {
             steps{
                 sh '''
@@ -29,6 +30,7 @@ pipeline {
                 '''
             }
         }
+        
         stage('Cleaning the project') {
             steps{
                 sh 'mvn clean'
@@ -88,9 +90,12 @@ pipeline {
                 }
             }
         }
+        
+        
+        
          stage ('Build our image'){
             steps{
-                sh 'sudo docker build --build-arg IP=0.0.0.0 -t medalaakanzari/achat_back .'
+                sh 'sudo docker build --build-arg IP=0.0.0.0 -t samiriahi/achat_back .'
             }
         }
         
@@ -98,13 +103,14 @@ pipeline {
         stage ('Deploy our image'){
             steps{
             
-            
                 sh 'sudo docker login -u samiriahi -p 123456799';
                 
                 sh 'sudo docker push samiriahi/achat_back'
                 
                 }
             }
+            
+            
     }
     
      
