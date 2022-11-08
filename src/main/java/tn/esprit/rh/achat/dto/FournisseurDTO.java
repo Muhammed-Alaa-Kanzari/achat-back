@@ -3,6 +3,7 @@ package tn.esprit.rh.achat.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import tn.esprit.rh.achat.entities
 
 import java.io.Serializable;
 import java.util.Set;
