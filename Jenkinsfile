@@ -26,12 +26,6 @@ pipeline {
 			}	
 			
 			
-        
-        stage ('Integration testing'){	
-		  	steps{
-		  		  sh 'mvn verify -DskipUnitTests'
-		  	 }
-		  }
         stage ('Maven Build'){	
 		  	steps{
 		  		  sh 'mvn clean install '
@@ -44,12 +38,6 @@ pipeline {
             }
         }
         
-       stage('Jacoco'){
-       	steps{
-       		echo 'Code coverage'
-       		jacoco()
-       	}
-       }
 		 
 		 
 		 
