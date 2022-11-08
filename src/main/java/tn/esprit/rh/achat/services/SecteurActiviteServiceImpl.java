@@ -12,6 +12,8 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 
 	@Autowired
 	SecteurActiviteRepository secteurActiviteRepository;
+	
+	
 	@Override
 	public List<SecteurActivite> retrieveAllSecteurActivite() {
 		return (List<SecteurActivite>) secteurActiviteRepository.findAll();
@@ -30,15 +32,14 @@ public class SecteurActiviteServiceImpl implements ISecteurActiviteService{
 	}
 
 	@Override
-	public SecteurActivite updateSecteurActivite(SecteurActivite sa) {
-		secteurActiviteRepository.save(sa);
-		return sa;
+	public SecteurActivite updateSecteurActivite(SecteurActivite secteurActivite) {
+		secteurActiviteRepository.save(secteurActivite);
+		return secteurActivite;
 	}
 
 	@Override
 	public SecteurActivite retrieveSecteurActivite(Long id) {
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(id).orElse(null);
-		return secteurActivite;
+		return secteurActiviteRepository.findById(id).orElse(null);
 	}
 
 }

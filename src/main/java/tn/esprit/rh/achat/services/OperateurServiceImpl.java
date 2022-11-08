@@ -34,12 +34,12 @@ public class OperateurServiceImpl implements IOperateurService {
 	@Override
 	public Operateur updateOperateur(long id ,Operateur operateurRequest) {
 		
-		Operateur operateur = operateurRepository.getOperateurById(id);
+		/*Operateur operateur = operateurRepository.findById(id).get();
 		operateur.setNom(operateurRequest.getNom());
 		operateur.setPrenom(operateurRequest.getPrenom());
-		operateur.setPassword(operateurRequest.getPassword());
+		operateur.setPassword(operateurRequest.getPassword());*/
 		
-		return operateurRepository.save(operateur); 
+		return operateurRepository.save(operateurRequest); 
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class OperateurController {
 	}
 
 	// http://localhost:8089/SpringMVC/operateur/add-operateur
-	@PostMapping
+	@PostMapping("add-operateur")
 	public ResponseEntity<OperateurDto> addOperateur(@RequestBody OperateurDto operateurDto) {
 		// convert DTO to entity
 		Operateur operateurRequest = modelMapper.map(operateurDto, Operateur.class);

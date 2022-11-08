@@ -12,7 +12,6 @@ import tn.esprit.rh.achat.repositories.*;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -49,25 +48,6 @@ public class FactureServiceImpl implements IFactureService {
 	}
 
 	
-	public Facture addDetailsFacture(Facture f, Set<DetailFacture> detailsFacture) {
-		float montantFacture = 0;
-		float montantRemise = 0;
-		for (DetailFacture detail : detailsFacture) {
-			
-			Produit produit = produitRepository.findProduitById(detail.getProduit().getIdProduit());
-			float prixTotalDetail = detail.getQteCommandee() * produit.getPrix();
-			float montantRemiseDetail = (prixTotalDetail * detail.getPourcentageRemise()) / 100;
-			float prixTotalDetailRemise = prixTotalDetail - montantRemiseDetail;
-			detail.setMontantRemise(montantRemiseDetail);
-			detail.setPrixTotalDetail(prixTotalDetailRemise);
-			montantFacture = montantFacture + prixTotalDetailRemise;
-			montantRemise = montantRemise + montantRemiseDetail;
-			detailFactureRepository.save(detail);
-		}
-		f.setMontantFacture(montantFacture);
-		f.setMontantRemise(montantRemise);
-		return f;
-	}
 
 	@Override
 	public void cancelFacture(Long factureId) {
