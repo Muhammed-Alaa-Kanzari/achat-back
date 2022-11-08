@@ -19,7 +19,7 @@ import java.util.List;
 public class FactureServiceImpl implements IFactureService {
 
 	private Logger logger = LoggerFactory.getLogger(getClass()); 
-	
+		
 	@Autowired
 	FactureRepository factureRepository;
 	@Autowired
