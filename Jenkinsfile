@@ -99,6 +99,12 @@ pipeline {
                 sh 'sudo docker push medalaakanzari/achat_back'
                 }
             }
+        
+         stage ('Docker Compose'){
+            steps{
+                sh 'sudo docker-compose up'
+                }
+            }
     }
     
      
