@@ -108,9 +108,10 @@ pipeline {
                 sh 'sudo docker push nourcheinecheikh/achat_back'
                 }
             }
-            stage ('Docker Compose'){
+         stage ('Docker compose'){
             steps{
-                sh 'sudo docker-compose up'
+           
+                sh 'docker-compose up'
                 }
             }
     }
