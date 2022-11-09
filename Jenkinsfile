@@ -8,17 +8,25 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.200.75:8081:8081"
+        NEXUS_URL = "0.0.0.0:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
       
     }
-    
-    stages {
+
+     stages {
         stage('Getting project from Github') {
             steps {
-                git branch : 'Facture' ,
+                git branch : 'fournisseur' ,
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
+            }
+        }
+         stage('Database Connection') {
+            steps{
+                sh '''
+                sudo docker stop mysql || true
+                sudo docker restart mysql || true
+                '''
             }
         }
         stage('Cleaning the project') {
@@ -27,19 +35,24 @@ pipeline {
             }
 
         }
-        stage ('Integration testing'){	
-		  	steps{
-		  		  sh 'mvn verify -DskipUnitTests'
-		  	 }
-		  }
-        
-
-
-    stage ('artifact construction') {
+        stage ('Artifact construction') {
             steps{
                 sh 'mvn  package'
             }
         }
+        stage ('Unit Test') {
+            steps{
+                sh 'mvn  test'
+            }
+        }
+        stage ('SonarQube analysis') {
+            steps{
+                sh '''
+                mvn sonar:sonar
+                '''
+            }
+        }
+
         stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -75,23 +88,18 @@ pipeline {
                 }
             }
         }
-
-                
          stage ('Build our image'){
             steps{
                 sh 'sudo docker build --build-arg IP=0.0.0.0 -t nourcheinecheikh/achat_back .'
             }
-            }
-        
-      stage ('Deploy our image'){
+        }
+        stage ('Deploy our image'){
             steps{
                 sh 'sudo docker login -u nourcheinecheikh -p 123nourcheine';
                 sh 'sudo docker push nourcheinecheikh/achat_back'
                 }
             }
-           
-        
     }
+    
+     
 }
-
-
