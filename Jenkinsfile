@@ -17,7 +17,7 @@ pipeline {
      stages {
         stage('Getting project from Github') {
             steps {
-                git branch : 'fournisseur' ,
+                git branch : 'Facture' ,
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
@@ -52,7 +52,7 @@ pipeline {
                 '''
             }
         }*/
-        stage ('SonarQube analysis'){	
+       /* stage ('SonarQube analysis'){	
 		  	steps{
 		  		script{
 		  				withSonarQubeEnv(credentialsId: 'sonartoken', installationName: 'sonarServer') {		  			
@@ -60,7 +60,7 @@ pipeline {
 		            		}
 		              }		
 		  	      }	
-		   }
+		   }*/
 
         stage("Publish to Nexus Repository Manager") {
             steps {
