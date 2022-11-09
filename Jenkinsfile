@@ -21,19 +21,19 @@ pipeline {
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
-         stage('Database Connection') {
-            steps{
-                sh '''
-                sudo docker stop mysql || true
-                sudo docker restart mysql || true
-                '''
-            }
-        }
+       
         stage('Cleaning the project') {
             steps{
                 sh 'mvn clean'
             }
 
+        }
+          stage('Database Connection') {
+            steps{
+                sh '''
+                sudo docker restart mysql || true
+                '''
+            }
         }
         stage ('Artifact construction') {
             steps{
@@ -43,6 +43,13 @@ pipeline {
         stage ('Unit Test') {
             steps{
                 sh 'mvn  test'
+            }
+        }
+         stage('Database Shutdown') {
+            steps{
+                sh '''
+                sudo docker stop mysql || true
+                '''
             }
         }
         stage ('SonarQube analysis') {
