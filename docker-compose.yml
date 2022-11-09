@@ -13,7 +13,7 @@ services:
 
 
   app_achat_back:
-    image : docker.io/bellaherich/devops:2.1 .
+    image : docker.io/bellaherich/devops
     depends_on:
       - mysqldatabase
     restart: on-failure
