@@ -102,6 +102,7 @@ pipeline {
         }
         
         
+        
        /* stage ('Deploy our image'){
             steps{
             
@@ -111,6 +112,8 @@ pipeline {
                 
                 }
             }*/
+            
+            
             
             stage ('Docker compose'){
             steps{
