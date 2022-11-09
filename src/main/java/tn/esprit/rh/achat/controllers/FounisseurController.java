@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 @RestController
 @Api(tags = "Gestion des fournisseurss")
 @RequestMapping("/fournisseur")
-@CrossOrigin("*")
+// @CrossOrigin("*")
 public class FounisseurController {
 	
 	
