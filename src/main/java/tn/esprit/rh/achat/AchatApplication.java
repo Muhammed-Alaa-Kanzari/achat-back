@@ -10,6 +10,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class AchatApplication {
 
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
+	
+	
     public static void main(String[] args) {
         SpringApplication.run(AchatApplication.class, args);
     }
