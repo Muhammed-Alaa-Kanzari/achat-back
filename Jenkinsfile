@@ -22,14 +22,7 @@ pipeline {
             }
         }
         
-         stage('Database Connection') {
-            steps{
-                sh '''
-                sudo docker stop mysql || true
-                sudo docker restart mysql || true
-                '''
-            }
-        }
+         
         
         stage('Cleaning the project') {
             steps{
@@ -37,6 +30,14 @@ pipeline {
             }
 
         }
+           stage('Database Connection') {
+            steps{
+                sh '''
+                sudo docker restart mysql || true
+                '''
+            }
+        }
+        
         stage ('Artifact construction') {
             steps{
                 sh 'mvn  package'
@@ -45,6 +46,14 @@ pipeline {
         stage ('Unit Test') {
             steps{
                 sh 'mvn  test'
+            }
+        }
+        
+        stage('Database Shutdown') {
+            steps{
+                sh '''
+                sudo docker stop  mysql || true
+                '''
             }
         }
 
@@ -117,7 +126,7 @@ pipeline {
             
             stage ('Docker compose'){
             steps{
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
                 }
             }
             
