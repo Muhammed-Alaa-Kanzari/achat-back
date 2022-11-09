@@ -45,13 +45,22 @@ pipeline {
                 sh 'mvn  test'
             }
         }
-        stage ('SonarQube analysis') {
+      /*  stage ('SonarQube analysis') {
             steps{
                 sh '''
                 mvn sonar:sonar
                 '''
             }
-        }
+        }*/
+        stage ('SonarQube analysis'){	
+		  	steps{
+		  		script{
+		  				withSonarQubeEnv(credentialsId: 'sonartoken', installationName: 'sonarServer') {		  			
+		  		       	sh 'mvn clean package sonar:sonar '
+		            		}
+		              }		
+		  	      }	
+		   }
 
         stage("Publish to Nexus Repository Manager") {
             steps {
