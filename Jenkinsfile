@@ -102,7 +102,7 @@ pipeline {
         }
         
         
-        stage ('Deploy our image'){
+       /* stage ('Deploy our image'){
             steps{
             
                 sh 'sudo docker login -u samiriahi -p 123456799';
@@ -110,11 +110,10 @@ pipeline {
                 sh 'sudo docker push samiriahi/achat_back'
                 
                 }
-            }
+            }*/
             
             stage ('Docker compose'){
             steps{
-           
                 sh 'docker-compose up'
                 }
             }
