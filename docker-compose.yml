@@ -30,8 +30,18 @@ services:
           }'
     networks:
       - backend-net
+      - frontend-net
 
 
-
+  achat_front :
+    image : medalaakanzari/achat_front
+    ports:
+      - 80:80
+    depends_on :
+      - achat_back
+    restart : on-failure
+    networks :
+      - frontend-net
 networks:
-  backend-net:
+  backend-net :
+  frontend-net :
