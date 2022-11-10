@@ -67,18 +67,15 @@ pipeline {
      
         
         
-/*
-         stage ('SonarQube analysis'){	
-		  	steps{
-		  		script{
-		  				withSonarQubeEnv(credentialsId: 'sonarToken', installationName: 'sonarServer') {		  			
-		  		       	sh 'mvn clean package sonar:sonar '
-		            		}
-		              }		
-		  	      }	
-		   }
+
+        stage ('SonarQube analysis') {
+            steps{
+                sh '''
+                mvn sonar:sonar
+                '''
+            }
 		   
-		  */ 
+		  
 		   
 		   	
 /*
