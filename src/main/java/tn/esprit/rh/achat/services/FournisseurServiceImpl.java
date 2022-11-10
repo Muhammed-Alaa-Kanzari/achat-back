@@ -72,7 +72,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		return fournisseur;
 	}
 	
-	/* classe fourniseur */
+	
 
 	@Override
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
