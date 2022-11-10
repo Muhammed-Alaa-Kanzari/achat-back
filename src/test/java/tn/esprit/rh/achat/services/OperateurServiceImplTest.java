@@ -55,7 +55,7 @@ public class OperateurServiceImplTest {
 	@Test
 	public void testDeleteOperateur () throws ParseException{
 		Operateur op = new Operateur() ;
-		op.setIdOperateur((long) 1);		
+		op.setIdOperateur((long) 4);		
 		op.setNom( " Riahi " ) ;
 		op.setPrenom( "Sami" );
 		op.setPassword( "letmein" );
