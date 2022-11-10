@@ -17,8 +17,8 @@ pipeline {
      stages {
         stage('Getting project from Github') {
             steps {
-                git branch : 'fournisseur' ,
-                    url : 'https://github.com/ahmedaziz-code/app-achat';
+                git branch : 'main' ,
+                    url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
        
