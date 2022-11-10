@@ -71,6 +71,8 @@ public class FournisseurServiceImpl implements IFournisseurService {
 		Fournisseur fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);
 		return fournisseur;
 	}
+	
+	/* classe fourniseur */
 
 	@Override
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
