@@ -32,7 +32,7 @@ pipeline {
         }
         
         
-        /*
+     
            stage('Database Connection') {
             steps{
                 sh '''
@@ -40,9 +40,9 @@ pipeline {
                 '''
             }
         }
-        */
         
-        /*
+        
+        
         
         stage ('Artifact construction') {
             steps{
@@ -54,9 +54,9 @@ pipeline {
                 sh 'mvn  test'
             }
         }
-        */
         
-        /*
+        
+        
         stage('Database Shutdown') {
             steps{
                 sh '''
@@ -64,7 +64,7 @@ pipeline {
                 '''
             }
         }
-     */   
+     
         
         
 /*
