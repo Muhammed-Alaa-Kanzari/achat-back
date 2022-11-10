@@ -38,7 +38,7 @@ services:
     ports:
       - 80:80
     depends_on :
-      - achat_back
+      - app_achat_back
     restart : on-failure
     networks :
       - frontend-net
