@@ -74,6 +74,8 @@ pipeline {
                 mvn sonar:sonar
                 '''
             }
+            
+            }
 		   
 		  
 		   
