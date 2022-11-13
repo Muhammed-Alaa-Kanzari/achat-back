@@ -17,7 +17,7 @@ pipeline {
      stages {
         stage('Getting project from Github') {
             steps {
-                git branch : 'Nourcheine' ,
+                git branch : 'nourcheine' ,
                     url : 'https://github.com/Muhammed-Alaa-Kanzari/achat-back';
             }
         }
