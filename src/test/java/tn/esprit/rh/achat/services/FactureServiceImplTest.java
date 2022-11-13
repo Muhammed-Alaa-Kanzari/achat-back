@@ -47,7 +47,7 @@ class FactureServiceImplTest {
 
     List<Facture> listFacture = new ArrayList<Facture>(){
         {
-            add(new Facture((float) 6.4, (float) 99.2,new Date(),new Date(),true));
+            add(new Facture((float) 6.4, (float) 91.2,new Date(),new Date(),true));
             add(new Facture((float) 7.9, (float) 99.2,new Date(),new Date(),true));
         }
     };
