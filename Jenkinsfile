@@ -5,7 +5,7 @@ pipeline {
         maven 'M2_HOME'
         jdk 'JAVA_HOME'
     }
-    environment {
+   /* environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "0.0.0.0:8081"
@@ -13,7 +13,7 @@ pipeline {
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
       
     }
-
+*/
      stages {
         stage('Getting project from Github') {
             steps {
