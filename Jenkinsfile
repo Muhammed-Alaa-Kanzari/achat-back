@@ -35,11 +35,11 @@ pipeline {
                 '''
             }
         }
-        stage ('Artifact construction') {
+       /* stage ('Artifact construction') {
             steps{
                 sh 'mvn  package'
             }
-        }
+        }*/
         stage ('Unit Test') {
             steps{
                 sh 'mvn  test'
